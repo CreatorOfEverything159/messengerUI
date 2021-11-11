@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scrollbar-width: 5px;
+    scrollbar-color: gray #fff;
+}
+
+*::-webkit-scrollbar {
+    width: 5px;
+}
+*::-webkit-scrollbar-track {
+    display: none;
+    background: #fff;
+}
+*::-webkit-scrollbar-thumb {
+    display: none;
+    border-radius: 5px;
+    border: 3px solid gray;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Raleway', sans-serif;
+}
+
+.messenger {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.messenger__wrapper {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+}
+
+.users {
+    background-color: #ffffff;
+    border-right: 1px solid #c1c1c1;
+}
+
+.users__wrapper {
+    height: 100vh;
+    white-space: nowrap;
+    overflow-y: auto;
+    scroll-snap-type: y;
+}
+
+/* user */
+
+.user {
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #c1c1c1;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.user:hover {
+    background-color: #c1c1c1;
+}
+
+.user > .user__avatar > img {
+    width: 50px;
+}
+
+.user > .user__content {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.user__firstName {
+    font-weight: 800;
+}
+
+/* messages */
+
+.messages {
+    height: 100vh;
+}
+
+.message__block {
+    width: 70vw;
+    padding: 10px;
+    background-color: #fff;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #c1c1c1;
+}
+
+.message__label {
+    width: 100%;
+}
+
+.msg__input {
+    width: 100%;
+    resize: none;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    padding: 10px;
+    background-color: #eeeeee;
+    height: 100px;
+}
+
+.send {
+    display: inline-block;
+}
+
+/* messages */
+
+.messages__wrapper {
+    width: 70vw;
+    height: calc(100vh - 125px);
+    overflow-y: auto;
+    scroll-snap-type: y;
+    padding: 0 10px;
+}
+
+.msg {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    scroll-snap-align: none;
+}
+
+.my {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.msg__text {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    background-color: #d2d2d2;
+}
+
+.my > .msg__text {
+    background-color: #8b8b8b;
+}
