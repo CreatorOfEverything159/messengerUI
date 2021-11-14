@@ -1,34 +1,50 @@
-/*
-Лабораторная работа №7. Обработка событий с помощью JavaScript. Манипуляции с DOM (2 часа).
-Цель: научиться создавать динамические web-страницы.
-Теоретическая часть:
-https://learn.javascript.ru/
-Постановка задачи: заверстать пользовательский интерфейс по типу современных мессенджеров (Telegram/Vk/WhatsApp). С помощью Javascript реализовать вывод добавляемых сообщений на экран.
-Дополнительно (не обязательно к выполнению):
-Сохранять историю сообщений (можно на клиенте, после перезагрузки должно остаться. localStorage, например)
-Добавить возможность переключаться между контактами и писать индивидуально каждому
-Порядок выполнения:
-Анализ задачи
-Исследование источников
-Разработка структуры HTML-документа
-Добавить обработку событий добавления сообщений с помощью JavaScript
-Дополнительно (не обязательно к выполнению): реализовать сохранение истории сообщений
-Дополнительно (не обязательно к выполнению): добавить возможность переключаться между контактами и писать индивидуально каждому контакту
-Форма отчета: репозиторий на GitHub с исходным кодом проекта и описанием, web-страница в интернете.
-*/
-
-let user = `<a class="user">
+const user = (name) => {
+    return `<a class="user">
     <div class="user__avatar">
         <img src="https://ciuss.com/wp-content/uploads/2021/03/man.png" alt="">
     </div>
     <div class="user__content">
         <div class="user__name">
-            <div class="user__firstName">Аран Пендек</div>
+            <div class="user__firstName">${name}</div>
         </div>
-        <div class="user__preview">ласт мессадж</div>
     </div>
 </a>`
+}
 
-let message = `<div class="msg my">
-                    <div class="msg__text">Lorem ipsum dolor.</div>
+const messageSendTo = (msg) => {
+    return `<div class="msg my">
+                    <div class="msg__text">${msg}</div>
                 </div>`
+}
+
+const messageSendFrom = (msg) => {
+    return `<div class="msg">
+                    <div class="msg__text">${msg}</div>
+                </div>`
+}
+
+let users = document.getElementById('users')
+
+function httpGet(theUrl) {
+    var xmlHttp = new XMLHttpRequest()
+    xmlHttp.open("GET", theUrl, false)
+    xmlHttp.send(null)
+    return xmlHttp.responseText
+}
+
+let usersList = JSON.parse(httpGet('http://api.randomdatatools.ru/?count=50&params=LastName,FirstName'))
+usersList.map(u => users.innerHTML += user(`${u.FirstName} ${u.LastName}`))
+
+let msgs = document.getElementById('msgs')
+let send = document.getElementById('send')
+send.addEventListener('click', () => {
+    let text = document.getElementById('text')
+    let message = text.value
+    if (message !== '') {
+        msgs.innerHTML += messageSendTo(message)
+        setTimeout(() => {
+            msgs.innerHTML += messageSendFrom(message)
+        }, 1000)
+        text.value = ''
+    }
+})

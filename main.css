@@ -12,11 +12,9 @@
     width: 5px;
 }
 *::-webkit-scrollbar-track {
-    display: none;
     background: #fff;
 }
 *::-webkit-scrollbar-thumb {
-    display: none;
     border-radius: 5px;
     border: 3px solid gray;
 }
