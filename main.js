@@ -32,7 +32,7 @@ function httpGet(theUrl) {
     return xmlHttp.responseText
 }
 
-let usersList = JSON.parse(httpGet('http://api.randomdatatools.ru/?count=50&params=LastName,FirstName'))
+let usersList = JSON.parse(httpGet('https://api.randomdatatools.ru/?count=50&params=LastName,FirstName'))
 usersList.map(u => users.innerHTML += user(`${u.FirstName} ${u.LastName}`))
 
 let msgs = document.getElementById('msgs')
